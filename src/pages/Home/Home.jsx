@@ -1,18 +1,24 @@
 import React from "react";
 import { useAppState } from "../../StateContext";
+import { FramedText } from "../../components";
 
 export default function Home() {
   const { state, dispatch } = useAppState();
   return (
-    <div className="df main">
+    <div className="main">
       <div
-        className="df main aic col"
+        className="df aic"
         style={{
-          padding: "0px 20px",
+          justifyContent: "space-between",
         }}
       >
         <h1>{`Hello ${state.user.name}`}</h1>
-        <span>{`You currently have ${state.user.balance}$`}</span>
+
+        <FramedText
+          bgColor={"pink"}
+          color={"red"}
+          text={`${state.user.balance}$`}
+        />
       </div>
     </div>
   );
