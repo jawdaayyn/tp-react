@@ -2,7 +2,16 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 
 export const StateContext = createContext();
+/* USAGE EXAMPLE
+ dispatch({
+              selection: "user",
+              action: {
+                ...state.user,
+                balance: state.user.balance + 1,
+              },
+            })
 
+*/
 function reducer(state, action) {
   return {
     ...state,
