@@ -1,0 +1,26 @@
+.navbar {
+  background: var(--black);
+  border-right: 1px solid var(--divider);
+  transition: 0.5s;
+}
+
+.burger-icon {
+  background-color: var(--darkgrey);
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-duration: 0.3s;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 8px;
+  color: var(--lightblue);
+}
+
+.burger-icon:hover {
+  background-color: #252c31;
+}
+
+.navbar-link {
+  color: var(--whitesmoke);
+}
+.navbar-link:hover {
+  color: var(--green);
+}
