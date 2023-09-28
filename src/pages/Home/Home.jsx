@@ -4,7 +4,7 @@ import { FramedText, PackOpening } from "../../components";
 import { legendaries } from "../../services/pokemon";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
+import toast from "react-hot-toast";
 export default function Home() {
   const { state, dispatch } = useAppState();
 
@@ -17,6 +17,7 @@ export default function Home() {
             (e) => !legendaries.includes(e.name)
           )}
           onOpened={(cards) => {
+            const moneyEarnt = Math.floor(Math.random() * 1000);
             dispatch({
               selection: "user",
               action: {
@@ -25,15 +26,11 @@ export default function Home() {
                   ...state.user.packs,
                   [rarity]: state.user.packs[rarity] - 1,
                 },
-              },
-            });
-            dispatch({
-              selection: "user",
-              action: {
-                ...state.user,
                 collection: [...state.user.collection, ...cards],
+                balance: moneyEarnt + state.user.balance,
               },
             });
+            toast.success(`You earned ${moneyEarnt}$ !`);
           }}
         />
       );

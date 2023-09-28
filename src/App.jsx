@@ -4,9 +4,11 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home/Home";
 import { StateProvider } from "./StateContext";
 import { SkeletonTheme } from "react-loading-skeleton";
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
+      <Toaster />
       <StateProvider>
         <SkeletonTheme baseColor="#202020" highlightColor="#444">
           <Router>
