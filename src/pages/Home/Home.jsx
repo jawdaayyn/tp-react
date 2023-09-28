@@ -1,9 +1,51 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useAppState } from "../../StateContext";
-import { FramedText } from "../../components";
+import { FramedText, PackOpening } from "../../components";
+import { legendaries } from "../../services/pokemon";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export default function Home() {
   const { state, dispatch } = useAppState();
+
+  const renderPackOpening = (rarity) => {
+    if (state.user.packs[rarity]) {
+      return (
+        <PackOpening
+          rarity={rarity}
+          data={state.cache.pokemons.filter(
+            (e) => !legendaries.includes(e.name)
+          )}
+          onOpened={(cards) => {
+            dispatch({
+              selection: "user",
+              action: {
+                ...state.user,
+                packs: {
+                  ...state.user.packs,
+                  [rarity]: state.user.packs[rarity] - 1,
+                },
+              },
+            });
+            dispatch({
+              selection: "user",
+              action: {
+                ...state.user,
+                collection: [...state.user.collection, ...cards],
+              },
+            });
+          }}
+        />
+      );
+    }
+    return null;
+  };
+  const rarities = ["legendary", "epic", "rare", "common"];
+
+  {
+    rarities.map((rarity) => renderPackOpening(rarity));
+  }
+
   return (
     <div className="main">
       <div
@@ -20,6 +62,51 @@ export default function Home() {
           text={`${state.user.balance}$`}
         />
       </div>
+      {!state.loading && state.cache.pokemons.length ? (
+        <div
+          className="df col"
+          style={{
+            padding: "16px 32px",
+          }}
+        >
+          <h2>
+            {Object.values(state.user.packs).some((a) => a > 0)
+              ? `${Object.values(state.user.packs).reduce(
+                  (acc, curr) => acc + curr,
+                  0
+                )}  pack(s) waiting for you !`
+              : "No packs left"}
+          </h2>
+          <div
+            className="df aic"
+            style={{
+              marginTop: "20px",
+            }}
+          >
+            {rarities.map((rarity) => renderPackOpening(rarity))}
+          </div>
+        </div>
+      ) : state.loading ? (
+        <div
+          className="df col"
+          style={{
+            padding: "16px 32px",
+          }}
+        >
+          <h2>Loading...</h2>
+          <div className="df aic">
+            {rarities.map((rarity) => (
+              <Skeleton
+                height={300}
+                width={200}
+                style={{
+                  marginRight: "20px",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

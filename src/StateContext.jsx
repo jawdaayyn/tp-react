@@ -20,11 +20,18 @@ function reducer(state, action) {
 }
 export const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
+    loading: false,
     user: {
       name: "Jawdan",
       balance: 100,
       collection: [],
       favorites: [],
+      packs: {
+        legendary: 2,
+        rare: 1,
+        epic: 1,
+        common: 0,
+      },
     },
     cache: {
       pokemons: [],
@@ -38,10 +45,36 @@ export const StateProvider = ({ children }) => {
 
   async function getPokemons() {
     try {
+      dispatch({
+        selection: "loading",
+        action: true,
+      });
       const { data } = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=1292"
+        "https://pokeapi.co/api/v2/pokemon?limit=151"
       );
+      const pokemons = await Promise.all(
+        data.results.map(async (pokemon) => {
+          const { data } = await axios.get(pokemon.url);
+          return data;
+        })
+      );
+
+      dispatch({
+        selection: "cache",
+        action: {
+          pokemons,
+        },
+      });
+
+      dispatch({
+        selection: "loading",
+        action: false,
+      });
     } catch (err) {
+      dispatch({
+        selection: "loading",
+        action: false,
+      });
       console.log(err);
     }
   }
