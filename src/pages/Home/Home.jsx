@@ -54,7 +54,11 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        padding: "25px 50px",
+      }}
+    >
       <div
         className="df aic"
         style={{
