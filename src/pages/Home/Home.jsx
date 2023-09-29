@@ -15,9 +15,13 @@ export default function Home() {
       return (
         <PackOpening
           rarity={rarity}
-          data={state.cache.pokemons.filter(
-            (e) => !legendaries.includes(e.name)
-          )}
+          data={
+            rarity === "common"
+              ? state.cache.pokemons.filter(
+                  (e) => !legendaries.includes(e.name)
+                )
+              : state.cache.pokemons
+          }
           onOpened={(cards) => {
             const moneyEarnt = Math.floor(Math.random() * 1000);
 

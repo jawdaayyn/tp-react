@@ -23,8 +23,8 @@ export const StateProvider = ({ children }) => {
     loading: false,
     close: false,
     user: {
-      name: "Jawdan",
-      balance: 100,
+      name: "Player",
+      balance: 500,
       collection: [],
       favorites: [],
       packs: {
