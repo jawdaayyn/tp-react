@@ -21,6 +21,7 @@ function reducer(state, action) {
 export const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
+    close: false,
     user: {
       name: "Jawdan",
       balance: 100,
@@ -80,7 +81,31 @@ export const StateProvider = ({ children }) => {
   }
   useEffect(() => {
     getPokemons();
+    const user = localStorage.getItem("user");
+    if (user) {
+      console.log(JSON.parse(user));
+      dispatch({
+        selection: "user",
+        action: JSON.parse(user),
+      });
+    }
   }, []);
+
+  useEffect(() => {
+    if (state.cache.pokemons.length) {
+      localStorage.clear();
+    }
+    try {
+      const user = localStorage.getItem("user");
+      if (!user) {
+        localStorage.setItem("user", JSON.stringify(state.user));
+      }
+    } catch (e) {
+      // Handle the error gracefully, e.g., by notifying the user
+      console.error("Local storage error:", e);
+      // You can also implement a fallback mechanism here
+    }
+  }, [state.user]);
 
   return (
     <StateContext.Provider value={value}>{children}</StateContext.Provider>

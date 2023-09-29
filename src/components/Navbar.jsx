@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { navbarData } from "../data";
 import { TbPokeball } from "react-icons/tb";
 import "./Navbar.css";
 import { findIcon } from "./findIcon";
+import { useAppState } from "../StateContext";
 export default function Header() {
-  const [close, setClose] = useState(false);
+  const { state, dispatch } = useAppState();
   const location = useLocation();
 
   return (
@@ -13,49 +14,37 @@ export default function Header() {
       className="navbar df col"
       style={{
         justifyContent: "space-between",
-        width: close ? "80px" : "150px",
+        overflowX: "hidden",
+        width: state.close ? "80px" : "150px",
       }}
     >
       <div
-        className={`df aic ${close ? "col" : ""}`}
+        className={`df aic ${state.close ? "col" : ""}`}
         style={{
           padding: "0 10px",
         }}
       >
-        {!closed && (
-          <TbPokeball
-            style={{
-              width: "40px",
-              height: "80px",
-            }}
-            className="navbar-link"
-            cursor={"pointer"}
-            onClick={() => setClose(!close)}
-          />
-        )}
+        <TbPokeball
+          style={{
+            width: "40px",
+            height: "80px",
+          }}
+          className="navbar-link"
+          cursor={"pointer"}
+          onClick={() => dispatch({ selection: "close", action: !state.close })}
+        />
         <div
           className="df aic jcc col navbar-link"
           style={{
             cursor: "pointer",
             fontWeight: 700,
-            fontSize: close ? "1rem" : "1.2rem",
+            fontSize: state.close ? "1rem" : "1.2rem",
           }}
-          onClick={() => setClose(!close)}
+          onClick={() => dispatch({ selection: "close", action: !state.close })}
         >
           <span>{navbarData.title}</span>
           <span>{navbarData.title2}</span>
         </div>
-        {closed && (
-          <TbPokeball
-            className="navbar-link"
-            style={{
-              width: "20px",
-              height: "60px",
-            }}
-            cursor={"pointer"}
-            onClick={() => setClose(!close)}
-          />
-        )}
       </div>
       <div className="df col">
         {navbarData.links.slice(0, 4).map((e, i) => (
@@ -78,8 +67,8 @@ export default function Header() {
                 fontSize: "1rem",
               }}
             >
-              {findIcon(e.name, close)}
-              {!close && (
+              {findIcon(e.name, state.close)}
+              {!state.close && (
                 <span
                   style={{
                     marginLeft: "5px",
@@ -107,8 +96,11 @@ export default function Header() {
           }}
           to={navbarData.links[navbarData.links.length - 1].path}
         >
-          {findIcon(navbarData.links[navbarData.links.length - 1].name, close)}
-          {!close && (
+          {findIcon(
+            navbarData.links[navbarData.links.length - 1].name,
+            state.close
+          )}
+          {!state.close && (
             <span
               style={{
                 marginLeft: "5px",

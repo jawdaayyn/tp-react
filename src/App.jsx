@@ -2,9 +2,13 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home/Home";
+import Pokedex from "./pages/Pokedex/Pokedex";
+
 import { StateProvider } from "./StateContext";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { Toaster } from "react-hot-toast";
+import { RouterWrapper } from "./components/RouterWrapper";
+import Collection from "./pages/Collection/Collection";
 function App() {
   return (
     <>
@@ -20,9 +24,13 @@ function App() {
               }}
             >
               <Navbar />
-              <Routes>
-                <Route path="*" Component={Home} />
-              </Routes>
+              <RouterWrapper>
+                <Routes>
+                  <Route path="*" Component={Home} />
+                  <Route path="/collection" Component={Collection} />
+                  <Route path="/pokedex" Component={Pokedex} />
+                </Routes>
+              </RouterWrapper>
             </div>
           </Router>
         </SkeletonTheme>

@@ -18,19 +18,29 @@ export default function Home() {
           )}
           onOpened={(cards) => {
             const moneyEarnt = Math.floor(Math.random() * 1000);
+
+            const data = {
+              ...state.user,
+              packs: {
+                ...state.user.packs,
+                [rarity]: state.user.packs[rarity] - 1,
+              },
+              collection: [...state.user.collection, ...cards.map((e) => e.id)],
+              balance: moneyEarnt + state.user.balance,
+            };
             dispatch({
               selection: "user",
-              action: {
-                ...state.user,
-                packs: {
-                  ...state.user.packs,
-                  [rarity]: state.user.packs[rarity] - 1,
-                },
-                collection: [...state.user.collection, ...cards],
-                balance: moneyEarnt + state.user.balance,
+              action: data,
+            });
+
+            toast(`You earned ${moneyEarnt}$ !`, {
+              icon: "👏",
+              style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
               },
             });
-            toast.success(`You earned ${moneyEarnt}$ !`);
           }}
         />
       );
@@ -44,7 +54,7 @@ export default function Home() {
   }
 
   return (
-    <div className="main">
+    <div>
       <div
         className="df aic"
         style={{

@@ -1,0 +1,101 @@
+/* Water Type */
+.water {
+  background: linear-gradient(to bottom, #4fafff, #007bff);
+  color: #fff;
+}
+
+/* Fire Type */
+.fire {
+  background: linear-gradient(to bottom, #ffa07a, #ff4500);
+  color: #fff;
+}
+
+/* Grass Type */
+.grass {
+  background: linear-gradient(to bottom, #78c850, #4e8234);
+  color: #fff;
+}
+
+/* Electric Type */
+.electric {
+  background: linear-gradient(to bottom, #f8d030, #a1871f);
+  color: #fff;
+}
+
+/* Psychic Type */
+.psychic {
+  background: linear-gradient(to bottom, #f85888, #a13959);
+  color: #fff;
+}
+
+/* Fighting Type */
+.fighting {
+  background: linear-gradient(to bottom, #c03028, #7d1f1a);
+  color: #fff;
+}
+
+/* Ground Type */
+.ground {
+  background: linear-gradient(to bottom, #e0c068, #927d44);
+  color: #fff;
+}
+
+/* Flying Type */
+.flying {
+  background: linear-gradient(to bottom, #a890f0, #6d5e9c);
+  color: #fff;
+}
+
+/* Bug Type */
+.bug {
+  background: linear-gradient(to bottom, #a8b820, #6d7815);
+  color: #fff;
+}
+
+/* Poison Type */
+.poison {
+  background: linear-gradient(to bottom, #a040a0, #682a68);
+  color: #fff;
+}
+
+/* Rock Type */
+.rock {
+  background: linear-gradient(to bottom, #b8a038, #786824);
+  color: #fff;
+}
+
+/* Ghost Type */
+.ghost {
+  background: linear-gradient(to bottom, #705898, #493963);
+  color: #fff;
+}
+
+/* Ice Type */
+.ice {
+  background: linear-gradient(to bottom, #98d8d8, #638d8d);
+  color: #fff;
+}
+
+/* Steel Type */
+.steel {
+  background: linear-gradient(to bottom, #b8b8d0, #787887);
+  color: #fff;
+}
+
+/* Dragon Type */
+.dragon {
+  background: linear-gradient(to bottom, #7038f8, #4924a1);
+  color: #fff;
+}
+
+/* Dark Type */
+.dark {
+  background: linear-gradient(to bottom, #705848, #49392f);
+  color: #fff;
+}
+
+/* Fairy Type */
+.fairy {
+  background: linear-gradient(to bottom, #ee99ac, #9b6470);
+  color: #fff;
+}
