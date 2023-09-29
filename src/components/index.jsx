@@ -8,18 +8,18 @@ export const FramedText = ({ text, icon, color, bgColor }) => {
       style={{
         color,
         backgroundColor: bgColor,
-        padding: "1rem",
+        padding: "10px",
         borderRadius: "10px",
       }}
     >
+      {icon}
       <span
         style={{
-          marginRight: "1rem",
+          marginLeft: "2px",
         }}
       >
         {text}
       </span>
-      {icon}
     </div>
   );
 };

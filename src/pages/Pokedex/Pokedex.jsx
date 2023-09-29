@@ -2,6 +2,7 @@ import React from "react";
 import { useAppState } from "../../StateContext";
 import "./Pokedex.css";
 import { legendaries } from "../../services/pokemon";
+import { Header } from "../../components/Header";
 // Define a CSS style for the Pokemon cards
 
 const PokemonList = () => {
@@ -14,9 +15,9 @@ const PokemonList = () => {
         padding: "25px 50px",
       }}
     >
-      <h1>Pokedex</h1>
+      <Header title={"Pokedex"} />
+
       <div
-        className="pokemon-list"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr",
@@ -31,6 +32,7 @@ const PokemonList = () => {
                 ? "3px solid gold"
                 : pokemon.types[0].type.name === "normal" && "1px solid #ccc",
               borderRadius: "8px",
+              opacity: state.user.collection.includes(pokemon.id) ? 0.2 : 1,
               padding: "16px",
               margin: "16px",
               maxWidth: "200px",
@@ -38,6 +40,15 @@ const PokemonList = () => {
               boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             }}
           >
+            {state.user.collection.includes(pokemon.id) && (
+              <span
+                style={{
+                  fontSize: "1.9rem",
+                }}
+              >
+                CAUGHT
+              </span>
+            )}
             <img
               src={pokemon.sprites.front_default}
               alt={pokemon.name}

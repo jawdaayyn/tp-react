@@ -2,9 +2,11 @@ import React, { useMemo } from "react";
 import { useAppState } from "../../StateContext";
 import { FramedText, PackOpening } from "../../components";
 import { legendaries } from "../../services/pokemon";
+import { TbPokeball } from "react-icons/tb";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import toast from "react-hot-toast";
+import { Header } from "../../components/Header";
 export default function Home() {
   const { state, dispatch } = useAppState();
 
@@ -49,30 +51,13 @@ export default function Home() {
   };
   const rarities = ["legendary", "epic", "rare", "common"];
 
-  {
-    rarities.map((rarity) => renderPackOpening(rarity));
-  }
-
   return (
     <div
       style={{
         padding: "25px 50px",
       }}
     >
-      <div
-        className="df aic"
-        style={{
-          justifyContent: "space-between",
-        }}
-      >
-        <h1>{`Hello ${state.user.name}`}</h1>
-
-        <FramedText
-          bgColor={"pink"}
-          color={"red"}
-          text={`${state.user.balance}$`}
-        />
-      </div>
+      <Header />
       {!state.loading && state.cache.pokemons.length ? (
         <div
           className="df col"

@@ -9,6 +9,8 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import { Toaster } from "react-hot-toast";
 import { RouterWrapper } from "./components/RouterWrapper";
 import Collection from "./pages/Collection/Collection";
+import Store from "./pages/Store/Store";
+import Settings from "./pages/Settings/Settings";
 function App() {
   return (
     <>
@@ -29,6 +31,8 @@ function App() {
                   <Route path="*" Component={Home} />
                   <Route path="/collection" Component={Collection} />
                   <Route path="/pokedex" Component={Pokedex} />
+                  <Route path="/store" Component={Store} />
+                  <Route path="/settings" Component={Settings} />
                 </Routes>
               </RouterWrapper>
             </div>

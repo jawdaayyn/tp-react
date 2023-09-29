@@ -2,6 +2,7 @@ import React from "react";
 import { useAppState } from "../../StateContext";
 import { legendaries } from "../../services/pokemon";
 import toast from "react-hot-toast";
+import { Header } from "../../components/Header";
 export default function Collection() {
   const { state, dispatch } = useAppState();
 
@@ -12,9 +13,8 @@ export default function Collection() {
         padding: "25px 50px",
       }}
     >
-      <h1>Collection</h1>
+      <Header title={"Collection"} />
       <div
-        className="pokemon-list"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr",
