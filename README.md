@@ -9,3 +9,5 @@ React-icons: librairie permettant d'accéder à de nombreuses icones directement
 PokeAPI: Api permettant de consulter l'ensemble des données de pokémon.
 React-router-dom: Permet de créer une navigation sur un site web fait en React.
 React-skeleton : Permet de créer des composants lors de chargement de requêtes sur react.
+
+Demo : https://6517317f0c95ec209bc01670--starlit-strudel-f3027f.netlify.app
